@@ -41,9 +41,9 @@ xl(nNodes) = chord;
 yu(nNodes) = 0;
 yl(nNodes) = 0;
 % Plot.
-axis equal;
 plot(xu,yu);
 hold on;
 plot(xl,yl);
 plot(x,yc);
+daspect([1 1 1])
 end
