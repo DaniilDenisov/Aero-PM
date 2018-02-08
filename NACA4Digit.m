@@ -1,6 +1,7 @@
-function [ xu, xl, yu, yl, yc ] = NACA4Digit( m, p, xx, chord, nPanels )
+function [ xu, xl, yu, yl, yc, x ] = NACA4Digit( m, p, xx, nPanels, c)
 % Функция строит 4-х значный профиль NACA по обозначению.
 % M, P, XX - цифры из обозначения профиля (MPXX).
+chord = 1;
 x = 0:chord/nPanels:chord;
 nNodes = size(x,2);
 % Вычисление средней линии и производной.
@@ -40,6 +41,13 @@ xu(nNodes) = chord;
 xl(nNodes) = chord;
 yu(nNodes) = 0;
 yl(nNodes) = 0;
+% Масштабирование результатов.
+xu = xu*c;
+xl = xl*c;
+yu = yu*c;
+yl = yl*c;
+yc = yc*c;
+x = x*c;
 % Plot.
 plot(xu,yu);
 hold on;
