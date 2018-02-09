@@ -54,4 +54,11 @@ hold on;
 plot(xl,yl);
 plot(x,yc);
 daspect([1 1 1])
+% Сохранение средней линии в файл.
+fileID = fopen('tmpFoil.txt','w');
+fprintf(fileID,'%s\n',strcat('NACA',num2str(m*100),num2str(p*10),...
+    num2str(xx)));
+tmpData = [x;yc'];
+fprintf(fileID,'%6.4f %6.4f\r\n',tmpData);
+fclose(fileID);
 end

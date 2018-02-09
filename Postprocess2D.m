@@ -6,6 +6,6 @@ deltaL = zeros(1,nPanels);
 for i=1:nPanels
     deltaL(i) = rho*Qinf*Gamma(i,1);
 end
-disp(deltaL);
+%disp(deltaL);
 disp(sum(deltaL));
 end
