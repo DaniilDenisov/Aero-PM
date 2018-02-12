@@ -28,8 +28,8 @@ function  CVelocityPlot2D( ll, ur, wf, WF, nodesNumwf, nodesNumWF )
     axis([real(ll), real(ur), imag(ll), imag(ur)],'on', 'equal')
     box on
     grid on
-    xlabel('Re(w)');
-    ylabel('Im(w)');
+    xlabel('Re(z)=x');
+    ylabel('Im(z)=y');
     title('Поле скорости');
     % Изопотенциальные линии.
     subplot(1,2,2)
@@ -39,8 +39,8 @@ function  CVelocityPlot2D( ll, ur, wf, WF, nodesNumwf, nodesNumWF )
     axis ([real(ll), real(ur), imag(ll), imag(ur)],'on', 'equal')
     box on
     grid on
-    xlabel('Re(W)');
-    ylabel('Im(W)');
+    xlabel('Re(z)=x');
+    ylabel('Im(z)=y');
     title('Комплексный потенциал');
     hold off
 end
