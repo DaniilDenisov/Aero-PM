@@ -11,17 +11,11 @@ for i=1:nPanels
     dc = sqrt((x(i+1)-x(i))^2+(z(i+1)-z(i))^2);
     deltaP(i) = rho*Qinf*Gamma(i,1)/dc;
 end
-%Печать подъемной силы.
-disp('Подъемная сила');
+%Переменная подъемной силы.
 DL = sum(deltaL);
-disp(DL);
-% Печать коэффициента ПС (СL).
-disp('Коэфф. ПС (CL)');
+%Переменная коэффициента ПС (СL).
 chord = max(x)-min(x);
 CL = sum(deltaL)/(0.5*rho*(Qinf^2)*chord);
-disp (CL);
-%Печать перепада давления.
-disp('Перепад давления');
+%Переменная перепада давления.
 DP = sum(deltaP);
-disp(DP);
 end

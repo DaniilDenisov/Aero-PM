@@ -14,7 +14,11 @@ function Run_BatchMode(Qinf, AngleOfAttackArr, rho, filename)
         DLCLDP(i,2) = DLCLDP(i,2) + CL;
         DLCLDP(i,3) = DLCLDP(i,3) + DP;
     end
-    figure
+    f = figure(2);
+    figure(f);
     plot(AngleOfAttackArr, DLCLDP(:,2));
+    title('CL(a)');
+    xlabel('Angle of attack');
+    ylabel('CL');
     grid on;
 end

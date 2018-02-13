@@ -53,7 +53,8 @@ function [x, z, xcol, zcol, xvor, zvor, normal] = ...
     end
     
     % ѕечать точек средней линии, вихрей и коллокации.
-    figure;
+    f = figure(3);
+    figure(f);
     plot(x,z,'s');
     hold on;
     plot(xvor,zvor,'o');
@@ -66,4 +67,5 @@ function [x, z, xcol, zcol, xvor, zvor, normal] = ...
         zline = [zcol(i) zcol(i)+normal(i,2)*L/5];
         line(xline,zline);
     end
+    hold on;
 end
