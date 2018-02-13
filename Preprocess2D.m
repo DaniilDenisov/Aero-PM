@@ -10,19 +10,19 @@ function [x, z, xcol, zcol, xvor, zvor, normal] = ...
     % Создание дескриптора файла. -1 если файла нет.
     fid = fopen(filename,'r');
     % Чтение строки наименования профиля (заголовок).
-    line = fgetl(fid);
-    airfoilName = sscanf(line,'%s');
+    lineRed = fgetl(fid);
+    airfoilName = sscanf(lineRed,'%s');
     disp(airfoilName);
 
     % Чтение данных. Массив точек.
     i = 1;
-    line = fgetl(fid);
-    while(line~=-1)
-        currentPts = sscanf(line,'%f');
+    lineRed = fgetl(fid);
+    while(lineRed~=-1)
+        currentPts = sscanf(lineRed,'%f');
         x(i) = currentPts(1);
         z(i) = currentPts(2);
         i = i+1;
-        line = fgetl(fid);
+        lineRed = fgetl(fid);
     end
     % Закрытие файла.
     fclose(fid);
@@ -48,8 +48,22 @@ function [x, z, xcol, zcol, xvor, zvor, normal] = ...
     normal = zeros(panelsTotalNum,2);
     for i=1:panelsTotalNum
         L = sqrt((x(i+1)-x(i))^2+(z(i+1)-z(i))^2);
-        normal(i,1) = (z(i+1)-z(i))/L;
+        normal(i,1) = -(z(i+1)-z(i))/L;
         normal(i,2) = (x(i+1)-x(i))/L;
     end
     
+    % Печать точек средней линии, вихрей и коллокации.
+    figure;
+    plot(x,z,'s');
+    hold on;
+    plot(xvor,zvor,'o');
+    plot(xcol,zcol,'+');
+    daspect([1 1 1])
+    % Печать на график нормалей.
+    for i=1:panelsTotalNum
+        L = sqrt((x(i+1)-x(i))^2+(z(i+1)-z(i))^2);
+        xline = [xcol(i) xcol(i)+normal(i,1)*L/5];
+        zline = [zcol(i) zcol(i)+normal(i,2)*L/5];
+        line(xline,zline);
+    end
 end

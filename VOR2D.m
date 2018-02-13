@@ -12,9 +12,8 @@ if R<=tol
     u = 0;
     w = 0;
 else
-    v = (0.5/pi)*(Gamma/R);
-    u = v*(Rz/R);
-    w = v*(-Rx/R);
+uw = (Gamma/(2*pi*R*R))*[0 1;-1 0]*[Rx; Rz];
+u = uw(1);
+w = uw(2);
 end
 end
-

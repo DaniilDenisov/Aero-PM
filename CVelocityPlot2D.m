@@ -19,6 +19,7 @@ function  CVelocityPlot2D( ll, ur, wf, WF, nodesNumwf, nodesNumWF )
     yWF = linspace (imag(ll), imag(ur), nodesNumWF);
     [XWF, YWF] = meshgrid(xWF, yWF);
     ZWF = complex(XWF, YWF);
+    
     % Печать двух графиков.
     f = figure(1);
     figure(f);
