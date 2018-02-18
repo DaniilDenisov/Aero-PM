@@ -4,21 +4,40 @@ function Run_BatchMode(Qinf, AngleOfAttackArr, rho, filename)
     [x, z, xcol, zcol, xvor, zvor, normal] = Preprocess2D( filename );
     % Число углов атаки.
     aaNum = size(AngleOfAttackArr,1);
-    % Массив для выходных значений DL,CL,DP на всех углах атаки.
-    DLCLDP = zeros(aaNum,3);
+    % Массив для выходных значений DL,DM,DMQC,CL,DP на всех углах атаки.
+    PPARR = zeros(aaNum,5);
     for i=1:aaNum
         [ Gamma ] = SolveDiscreteVortex2D( xvor, zvor, xcol, zcol,...
             normal, AngleOfAttackArr(i), Qinf );
-        [ DL,CL,DP ] = Postprocess2D( x, z, Gamma, rho, Qinf );
-        DLCLDP(i,1) = DLCLDP(i,1) + DL;
-        DLCLDP(i,2) = DLCLDP(i,2) + CL;
-        DLCLDP(i,3) = DLCLDP(i,3) + DP;
+        [ DL,DM,DMQC,CL,DP ] = Postprocess2D( x, z, Gamma, rho, Qinf,...
+            AngleOfAttackArr(i) );
+        PPARR(i,1) = PPARR(i,1) + DL;
+        PPARR(i,2) = PPARR(i,2) + DM;
+        PPARR(i,3) = PPARR(i,3) + DMQC;
+        PPARR(i,4) = PPARR(i,4) + CL;
+        PPARR(i,5) = PPARR(i,5) + DP;
     end
     f = figure(2);
+    % График коэффициента ПС.
     figure(f);
-    plot(AngleOfAttackArr, DLCLDP(:,2));
+    subplot(1,3,1);
+    plot(AngleOfAttackArr, PPARR(:,3));
     title('CL(a)');
     xlabel('Angle of attack');
     ylabel('CL');
+    grid on;
+    % График момента относительно Leading Edge.
+    subplot(1,3,2);
+    plot(AngleOfAttackArr, PPARR(:,2));
+    title('MLE(a)');
+    xlabel('Angle of attack');
+    ylabel('MLE');
+    grid on;
+    % График момента относительно Quarter Chord.
+    subplot(1,3,3);
+    plot(AngleOfAttackArr, PPARR(:,3));
+    title('MQC(a)');
+    xlabel('Angle of attack');
+    ylabel('MQC');
     grid on;
 end
