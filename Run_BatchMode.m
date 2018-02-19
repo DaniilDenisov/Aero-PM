@@ -21,7 +21,7 @@ function Run_BatchMode(Qinf, AngleOfAttackArr, rho, filename)
     % График коэффициента ПС.
     figure(f);
     subplot(1,3,1);
-    plot(AngleOfAttackArr, PPARR(:,3));
+    plot(AngleOfAttackArr, PPARR(:,4));
     title('CL(a)');
     xlabel('Angle of attack');
     ylabel('CL');
