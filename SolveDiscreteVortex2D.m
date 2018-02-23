@@ -5,7 +5,7 @@ nPanels = size(normal,1);
 a = zeros(nPanels, nPanels);
 for i=1:nPanels
     for j=1:nPanels
-        [u, w] = VOR2D(x(j), z(j), xcol(i), zcol(i), 1.0);
+        [u, w] = Vortex2D(x(j), z(j), xcol(i), zcol(i), 1.0);
         a(i,j) = dot([u w], [normal(i,1) normal(i,2)]);
     end
 end
