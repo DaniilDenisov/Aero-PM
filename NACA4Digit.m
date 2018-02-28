@@ -62,4 +62,14 @@ fprintf(fileID,'%s\n',strcat('NACA',num2str(m*100),num2str(p*10),...
 tmpData = [x;yc'];
 fprintf(fileID,'%6.4f %6.4f\r\n',tmpData);
 fclose(fileID);
+% Сохранение точек профиля в файл формата selig.
+fileID = fopen('tmpFoilSelig.txt','w');
+fprintf(fileID,'%s\n',strcat('NACA',num2str(m*100),num2str(p*10),...
+    num2str(xx)));
+tmpData = [fliplr(xu');fliplr(yu')];
+fprintf(fileID,'%6.4f %6.4f\r\n',tmpData);
+tmpData = [xl';yl'];
+tmpData(:,1)=[];
+fprintf(fileID,'%6.4f %6.4f\r\n',tmpData);
+fclose(fileID);
 end
