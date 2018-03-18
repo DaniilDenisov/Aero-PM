@@ -4,6 +4,7 @@ function [ Gamma ] = SolveDiscreteVortex2D( x, z, xcol, zcol, normal, angleOfAtt
 % normal - вектор нормалей в точках коллокации.
 % angleOfAttack - угол атаки невозмущенного набегающего потока.
 % Qinf - скорость набегающего потока.
+% Gamma - 
 angleOfAttackRad = angleOfAttack*pi/180;
 nPanels = size(normal,1);
 % ћатрица коэффициентов левой части уравнени€.
