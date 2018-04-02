@@ -11,7 +11,7 @@ nPanels = size(normal,1);
 a = zeros(nPanels, nPanels);
 for i=1:nPanels
     for j=1:nPanels
-        [u, w] = Vortex2D(x(j), z(j), xcol(i), zcol(i), 1.0);
+        [u, w] = Vortex2D(xcol(i), zcol(i), x(j), z(j), 1.0);
         a(i,j) = dot([u w], [normal(i,1) normal(i,2)]);
     end
 end
@@ -23,7 +23,7 @@ Uinf = cos(angleOfAttackRad)*Qinf;
 Winf = sin(angleOfAttackRad)*Qinf;
 % Вектор правой части. Вычисление.
 for i=1:nPanels
-    RHS(i) = dot([Uinf Winf], [normal(i,1) normal(i,2)]);
+    RHS(i) = -dot([Uinf Winf], [normal(i,1) normal(i,2)]);
 end
 
 % Решение уравнения.
