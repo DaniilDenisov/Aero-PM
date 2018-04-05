@@ -16,7 +16,7 @@ function Run(Qinf, AngleOfAttack, rho, filename)
     disp('Lift, Moment, Moment1/4chord, LiftCoeff, PressureDiff:');
     disp([ DL,DM0,DMQC,CL,DP ]);
     % Вычисление скорости сверху над профилем.
-    ptx = 0:0.2:2;
+    ptx = 0:0.1*max(x):max(x);
     ptz = 0.25*ones(1,size(ptx,2));
     VelT = zeros(size(ptx,2),2);
     for i=1:size(ptx,2)
